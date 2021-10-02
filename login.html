@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="login.css"type="text/css"rel="stylesheet">
+<script type="text/javascript" src="login.js"></script>
+</head>
+<body>
+
+<h2>Welcome  Healthy Food user you can  Login here by pressing login button</h2>
+
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+
+<div id="id01" class="modal">
+  
+<!----Adding border to image-->
+<style>
+  img {
+    border: 4px solid white;
+  }
+</style>
+
+<div class="imgcontainer">
+<span onclick="document.getElementById('id01').login.display='none'"class="close" title="Close Modal">&times;</span>
+<img src="healthy.jpg"><!--adding iamge-->
+</div>
+
+<div class="rectangle">
+<label for="u"><b>Username</b></label><!--adding username label-->
+<input type="text" placeholder="Please enter username" ><!--adding input please enter username-->
+<label for="text"><b> Password</b></label><!--adding pasword label-->
+<input type="text" placeholder=" Please Enter Password" ><!--adding input please enter password-->
+</div>
+<div class="container" style="background-color:#f1f1f1">
+  <h1>Please enter  your favourite colour  to conform your human being </h1>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"> </script>
+      <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/color-js@1.0.3"></script>
+
+<div id="StateTransitions">
+  <input
+    v-model="colorQuery"
+    v-on:keyup.enter="updateColor"
+    placeholder="Enter a color"
+  >
+  <button v-on:click="updateColor">show</button><!--show button-->
+  <p>view:</p>
+  <span
+    v-bind:style="{ backgroundColor: tweenedCSSColor }"
+    class="StateTransitions-color-preview"
+  ></span>
+  <p>{{ tweenedCSSColor }}</p>
+</div>
+<script>
+var Color = net.brehaut.Color
+
+new Vue({
+  el: '#StateTransitions',
+  data: {
+    colorQuery: '',
+    color: { // color
+      red: 0,
+      green: 0,
+      blue: 0,
+      alpha: 1
+    },
+    tweenedColor: {}
+  },
+  created: function () {
+    this.tweenedColor = Object.assign({}, this.color)
+  },
+  watch: {
+    color: function () {
+      function animate () {
+        if (TWEEN.update()) {
+          requestAnimationFrame(animate)
+        }
+      }
+
+      new TWEEN.Tween(this.tweenedColor)
+        .to(this.color, 750)
+        .start()
+
+      animate()
+    }
+  },
+  computed: {
+    tweenedCSSColor: function () {
+      return new Color({
+        red: this.tweenedColor.red,
+        green: this.tweenedColor.green,
+        blue: this.tweenedColor.blue,
+        alpha: this.tweenedColor.alpha
+      }).toCSS()
+    }
+  },
+  methods: {
+    updateColor: function () {
+      this.color = new Color(this.colorQuery).toRGB()
+      this.colorQuery = ''
+    }
+  }
+})
+</script>
+<style>
+.StateTransitions-color-preview {
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+}
+</style>
+
+<div id="demo">
+  <button v-on:click="show = !show">
+    login
+  </button>
+  <transition name="fade">
+    <h3 v-if="show">please check whether the detais are  correct or not before you press login</h3>
+  </transition>
+</div>
+<script>
+new Vue({
+  el: '#demo',
+  data: {
+    show: true
+  }
+})
+</script>
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>
+
+<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button><!--adding cancel button-->
+<span class="psw"> <a href="#">forgot password?</a></span>
+ </div>
+</form>
+</div>
+<script>
+   // Get the modal
+var modal = document.getElementById('id01');
+  
+  // When the user clicks anywhere outside it  closes
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+ </script>
+ 
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="Feedback.css"type="text/css"rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"> </script>
+
+
+
+</head>
+<body>
+
+    <style>
+        h3  {color:rgb(85, 8, 8);}
+        h2{color:maroon;}
+        h4{color:black;}
+      
+        h1{color:lightcoral;}
+        p  {color:rgb(240, 227, 227);}
+        </style>
+
+<!-- MAIN  -->
+<div class="main">
+
+<h1>Feedback</h1><!--heading-->
+
+
+
+<body class="row">
+  <div class="column">
+    <div class="content">
+      <img src="fat1.jpg" alt="Sana" style="width:100%"><!--adding image-->
+      <h2>Sana Fathima</h2>
+      <h3>1/sep/2021</h3>
+      <h4>Hi i am Sana Fathima . Before starting the diet plan given in this web page i was 102 kg but after following it for a month now i am 80 kg .Thanks for giving such a healthy diet plan.</h4>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content">
+    <img src="fat2.jpg" alt="Rita" style="width:100%"><!--adding image-->
+      <h2>Rita Thomas</h2>
+      <h4>21/aug/2021</h4>
+      <h4>Hello. i rita. I have faced a lot off problem due to my obesity. First when i started diet i thought i will not be able to complete it .But after following it for 3 months my weight reduced from 240lbs to 160lbs</h4>
+    </div>
+
+
+  </div>
+  <div class="column">
+    <div class="content">
+    <img src="dietpic.jpg" alt="Rosu" style="width:100%"><!--adding image-->
+      <h2>Rosu Emely</h2>
+      <h4>21/aug/2021</h4>
+      <h4>HEY i am rosu.i was leaving with my parents from childhood.But at my teenage because of higher studies i was forced to leave from parents. the main problem i faced was how to cook . From this webpage i got many recepie   which is good for health and easy to cook. </h4>
+    </div>
+  </div>
+
+
+  <div class="column">
+    <div class="content">
+    <img src="fat3.jpg" alt="sumi" style="width:100%"><!--adding image-->
+      <h2>Sumi</h2>
+      <h4>21/aug/2021</h4>
+      <h4>HI ,whats up  guys . i am just posting make you guys aware the  given keto diet plan in this page works. i am a evidence of it . i followed it for a  one month and reduced 20 kg .This webpage was suggested to me by one friend .First when i had look i thought it is impossible but my friend forced me to follow.Finally her words came to true</h4>
+    </div>
+  </div>
+</body>
+  
+ <!-- Declerative rendering-->
+ <div id="latestquestions"> 
+  <h1 class="latestquestions"> {{ task }} </h1>
+<hr> <!-- Line-->
+  <!-- Allows parent  to manage child  content -->
+<vue-slots>
+ <p slot="first">1) I am a  diabetic women and i am taking insulin every day two times which diet plan will be better for me   </p>
+<p slot="second">2) I am full time worker i want to reduce my weight .my marriage is coming next month before that i want to reduce atleast 10 kilo.which diet plan will suit me  best and help to achieve my goal .  slot</p>
+<p>3)I have filled and submitted my contact form today . how much working days should i wait for reply? </p>
+</vue-slots>
+<!--  render testing from  child -->
+<vue-slots> </vue-slots>
+</div>
+<!-- Js--> 
+<script type="text/x-template" id="vue-slots"> 
+  <div>
+<!-- first slot end up --> 
+<slot name="first"> </slot>
+<slot> 
+<!-- Override -->
+<p> 4)I  got a injury on by leg .now i have recovered but not fully .can i follow the exercise steps given in video . </p>
+      </slot> 
+<!-- second slot end -->
+<!-- Only ordered elements with the slot attribute can utilize this element -->
+ <slot name="second"> </slot>
+  </div>
+</script>
+
+<script>
+  Vue.component('vue-slots', {
+      template: '#vue-slots',
+      data() {
+          return {
+              childTitle: 'Hello'
+          }
+      },
+      props: {
+          type: String,
+          required: true
+      }
+  });
+
+  new Vue({
+      el: '#latestquestions',
+      data() {
+          return {
+              task: 'latest questions ',
+              
+          }
+      }
+  });
+</script>
+
+
+
+</html>

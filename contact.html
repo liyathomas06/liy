@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <head>
+    <title> </title>
+    <script src="https://unpkg.com/vue@next"></script>
+
+    
+
+</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="contact.css"type="text/css"rel="stylesheet">
+   
+
+</head>
+<body>
+
+<h1>Contact Us</h1>
+
+<p1>For emergency Contact -- 966565015399 , 966500323534-----</p1>
+<p2>email id -- liyathomas06@gmail.com   -- or -- rubithomas13@gmail.com</p2>
+<h4>Contact form</h4>
+<h1>Please fill form in correctly  and submit you will be contacted soon  </h1>
+<div class="container">
+ 
+    <div id="custom-events">
+        <!-- Bind component -->
+        <p>  First name is : {{ firstName }} </p>
+        <p>   Last name is : {{ lastName }} </p>
+        <p> email id is : {{ emailid }} </p>
+     
+
+        
+        <user-information
+            v-model:first-name="firstName"
+            v-model:last-name="lastName"
+            v-model:emailid="emailid"
+        ></user-information>
+    </div>
+
+    <script>
+        const UserInformation = {
+            props: {
+                firstName: String,
+                lastName: String,
+                emailid: String
+            },
+            template: // The template to show information from the user
+            ` 
+                <input 
+                type="text"
+                :value="firstName"
+                placeholder="First Name"
+                @input="$emit('update:firstName', $event.target.value)">
+                <input
+                type="text"
+                :value="lastName"
+                placeholder="Last Name"
+                @input="$emit('update:lastName', $event.target.value)">
+                <input
+                type="text"
+                :value="emailid "
+                placeholder="emailid "
+                @input="$emit('update:emailid', $event.target.value)">
+            `
+            
+        };
+
+        const CustomEvents = {
+            components: {
+                UserInformation
+            },
+            data() {
+                return {
+                    firstName: 'please  enter your name in  first box ',
+                    lastName: 'please  enter your name in  second box ',
+                    emailid: 'please  enter your name in  third box ,'
+                };
+            },
+        };
+
+        Vue.createApp(CustomEvents).mount('#custom-events')
+    </script>
+
+    <label for="s">Subject</label><!--adding label subject-->
+
+    <textarea id="s" name="s" placeholder="Type something.." style="height:100px"></textarea><!--showing input type something-->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"> </script>
+   <h3>From which month you started to use this website</h3>
+    <div id="dynamicoptions"> 
+      <select v-model="selected">
+          <!-- Dynamic -->
+          <option v-for="option in months" v-bind:value="option.value">
+              {{ option.text }}
+          </option>
+      </select>
+      <br><br>
+
+      <!-- Two-way binding -->
+      <span> Selected: {{ selected }} </span>
+  </div>
+
+  <!-- Js -->
+  <script>
+      new Vue ({
+          el: '#dynamicoptions',
+          data: {
+            selected: 'please choose a month', // default 
+              months: [
+
+              { text: '0', value: 'please choose a month'},
+                 
+                  { text: '1', value: 'JAN'},
+                  { text: '2', value: 'FEB'},
+                  { text: '3', value: 'MARCH'},
+                  { text: '4', value: 'APRIL'},
+                  { text: '5', value: 'MAY'},
+                  { text: '6', value: 'JUNE'},
+                  { text: '7', value: 'JULY'},
+                  { text: '8', value: 'AUG'},
+                  { text: '9', value: 'SEP'},
+                  { text: '10', value: 'OCT'}, 
+                  { text: '11', value: 'NOV'},
+                  { text: '12', value: 'DEC'},
+                  
+              ]
+          }
+      })
+  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"> </script>
+<div id="ComputedPropertiesandWachers">
+  <p>
+    Do you like our website?
+    <input v-model="question">
+  </p>
+  <p>{{ answer }}</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<script>
+var watchExampleVM = new Vue({
+  el: '#ComputedPropertiesandWachers',
+  data: {
+    question: '',
+    answer: 'please type yes or no and  add a question mark too at end '
+  },
+  watch: {
+    // when question changes, this function will run
+    question: function (newQuestion, oldQuestion) {
+      this.answer = 'Waiting ...........'
+      this.debouncedGetAnswer()
+    }
+  },
+  created: function () {
+    
+    this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+  },
+  methods: {
+    getAnswer: function () {
+      if (this.question.indexOf('?') === -1) {
+        this.answer = 'please  add a question mark ?)'
+        return
+      }
+      this.answer = 'Thinking...'
+      var vm = this
+      axios.get('https://yesno.wtf/api')
+        .then(function (response) {
+          vm.answer = _.capitalize(response.data.answer)
+        })
+        .catch(function (error) {
+          vm.answer = 'Error!!. ' + error
+        })
+    }
+  }
+})
+</script>   
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"> </script>
+<p> RATING</p>
+           
+<input type="checkbox" id="1" value="1" v-model="checkedNames">
+<label for="1">1</label>
+<input type="checkbox" id="2" value="2" v-model="checkedNames">
+<label for="2">2</label>
+<input type="checkbox" id="3" value="3" v-model="checkedNames">
+<label for="3">3</label>
+<input type="checkbox" id="4" value="4" v-model="checkedNames">
+<label for="4">4</label>
+<input type="checkbox" id="5" value="5" v-model="checkedNames">
+<label for="5">5</label>
+<br>
+
+<script>
+new Vue({
+  el: '...',
+  data: {
+    checkedNames: []
+  }
+})
+</script>
+        <div id="submit"> </div><!--for submit -->
+           <script>
+          Vue.component('submit', {
+               template: '<div><h3>${message}</h3> <button @click="test"> submit! </button></div>', 
+               delimiters: ['${','}'], 
+               data: function() {
+                   return { // return message 
+                       message: 'submit form'
+                   }
+               },
+               methods: {
+                   test: function() { 
+                       alert('Successfully submitted you will be soon contacted');//alert message 
+                   }
+               }
+           })
+
+           let submit = new Vue({
+               el:'#submit',
+               template: `<submit/>` 
+           });
+       </script>
+    </form>
+  </div>
+
+   
+  
+
+
+</body>
+</html>
+
